@@ -21,24 +21,27 @@ public class EmployeeMain {
 		e.addmanagedEmployees(store[1]);
 		store[3]=e;
 		
-		Employee[] me = new Employee[10];
-		me=e.getManagedEmployees();
-		System.out.println("managed employees are :");
-		for(int i=0;i<me.length;i++) {
-			System.out.println("Id:"+me[i].getId()+" Name:"+me[i].getName()+" Balance:"+me[i].getBalance());
-			
-		}
-		System.out.println("all employees are :");
-
 		EmployeeMain m = new EmployeeMain();
 		m.print(store);
 		
 	}
 	
     void print(Employee[] emp) {
-		for(int i=0;i<4;i++) {
-			System.out.println("Id:"+emp[i].getId()+" Name:"+emp[i].getName()+" Balance:"+emp[i].getBalance());
+	for(Employee e :emp) {
+		System.out.println(e.getName() + e.getBalance());
+		boolean isManager = e instanceof Manager;
+		if(isManager) {
+			Manager m = (Manager)e;
+			System.out.println("Managed Employees");
+			Employee[] managedEmployees = m.getManagedEmployees();
+			for(Employee managed : managedEmployees) {
+				if(managed!=null) {
+					System.out.println(managed.getName()+" "+managed.getBalance());
+				}
+			}
 		}
+		
+	}
 	}
 
 }
